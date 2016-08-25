@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+pkg_name=$1
+pkg_origin=$2
+
+if [[ -z "$pkg_origin" ]]; then
+    pkg_origin="ssd"
+fi
+
+if [[ -z "$(type gsed 2>/dev/null)" ]]; then
+    SED=sed
+else
+    SED=gsed
+fi
+
+echo "Using SED=$SED"
+
+pkg_dir="${pkg_origin}/${pkg_name}"
+if [[ -d "$pkg_dir" ]]; then
+    echo "$pkg_name already exists"
+else
+    mkdir -p "$pkg_dir"
+    cp "${pkg_origin}/plan-template.sh" "$pkg_dir/plan.sh"
+    $SED -i "s/PKG_NAME/$pkg_name/g" "$pkg_dir/plan.sh"
+    echo "Wrote $pkg_dir/plan.sh"
+fi
