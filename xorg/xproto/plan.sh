@@ -1,5 +1,5 @@
 #
-# This package is NOT officially support by the Xorg project.  Please
+# This package is NOT officially supported by the Xorg project. Please
 # report bugs related to this package on GitHub:
 #
 # https://github.com/stevendanna/habitat-plans
